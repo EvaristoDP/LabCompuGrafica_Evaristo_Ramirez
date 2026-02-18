@@ -213,8 +213,8 @@ int main() {
 		// Render
 		// Clear the colorbuffer
 		//glClearColor(0.2f, 0.3f, 0.8f, 1.0f);
-		//glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-		glClearColor(1.0f, 0.0f, 0.0f, 1.0f);
+		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+		//glClearColor(1.0f, 0.0f, 0.0f, 1.0f);
 
 		glClear(GL_COLOR_BUFFER_BIT| GL_DEPTH_BUFFER_BIT);
 
@@ -225,7 +225,7 @@ int main() {
 		glm::mat4 view=glm::mat4(1);
 	
 	 //  view = glm::translate(view, glm::vec3(0.0f,0.0f,0.0f));
-		//model = glm::rotate( model, 0.5f, glm::vec3( 1.0f, 0.0f, 0.0f ) ); // use to compare orthographic and perspective projection
+		model = glm::rotate( model, 0.5f, glm::vec3( 1.0f, 0.0f, 0.0f ) ); // use to compare orthographic and perspective projection
 		//model = glm::scale(model, glm::vec3(500.0f, 500.0f, 500.0f));
 		//view = glm::translate( view, glm::vec3( screenWidth / 2, screenHeight / 2,-700.0f ) ); // use with orthographic projection
 		
