@@ -221,10 +221,21 @@ int main() {
 		ourShader.Use();
 		glm::mat4 view = glm::mat4(1);
 
-		view = glm::translate(view, glm::vec3(0.0f, -1.0f, -5.0f)); //Esta es la cámara.
+		view = glm::translate(view, glm::vec3(0.0f, 0.0f, -6.0f)); //Esta es la cámara.
 
 		//CUBO E ----------------------------------------------------------------------------
 		glm::mat4 modelE=glm::mat4(1); //aquí empieza el primer cubo
+
+		//Números para calular posiciones de vértices nuevos
+		float ang1 = glm::radians(0.0f);
+		float radio = 2.0f;
+
+		float x1 = radio * cos(ang1);
+		float z1 = radio * sin(ang1);
+
+		modelE = glm::translate(modelE, glm::vec3(x1, 0.0f, z1));
+		modelE = glm::rotate(modelE, ang1, glm::vec3(0.0f, 1.0f, 0.0f));
+		modelE = glm::scale(modelE, glm::vec3(0.0f, 0.0f, 0.0f));
 
 
 		//model = glm::rotate( model, 0.5f, glm::vec3( 1.0f, 0.0f, 0.0f ) ); // use to compare orthographic and perspective projection
@@ -245,64 +256,119 @@ int main() {
 		//-------------------------------------------------------------------------------------
 		//Cubo V
 		glm::mat4 modelV = glm::mat4(1);
-		modelV = translate(modelV, glm::vec3(0.5f, 1.0f, 0.5f));
-		modelV = rotate(modelV, 0.5f, glm::vec3(0.0f, 1.0f, 0.0f));
+
+		float ang2 = glm::radians(45.0f);
+
+		float x2 = radio * cos(ang2);
+		float z2 = radio * sin(ang2);
+
+		modelV = glm::translate(modelV, glm::vec3(x2, 1.0f, z2));
+		modelV = glm::rotate(modelV, 0.5f, glm::vec3(0.0f, 1.0f, 0.0f));
+
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelV));
 		glDrawArrays(GL_TRIANGLES, 0, 36);
 		//-------------------------------------------------------------------------------------
 
 		//-------------------------------------------------------------------------------------
 		//Cubo A
-		/*glm::mat4 modelA = glm::mat4(1);
-		modelA = translate(modelA, glm::vec3(0.5f, 1.0f, 0.5f));
-		modelA = rotate(modelA, 0.5f, glm::vec3(0.0f, 1.0f, 0.0f));
+		glm::mat4 modelA = glm::mat4(1);
+
+		float ang3 = glm::radians(90.0f);
+
+		float x3 = radio * cos(ang3);
+		float z3 = radio * sin(ang3);
+
+		modelA = glm::translate(modelA, glm::vec3(x3, 2.0f, z3));
+		modelA = glm::rotate(modelA, ang1, glm::vec3(0.0f, 1.0f, 0.0f));
+		modelA = glm::scale(modelA, glm::vec3(0.8f, 0.0f, 0.9f));
+
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelA));
-		glDrawArrays(GL_TRIANGLES, 0, 36);*/
+		glDrawArrays(GL_TRIANGLES, 0, 36);
 		//-------------------------------------------------------------------------------------
 
 		//-------------------------------------------------------------------------------------
 		//Cubo R
-		/*glm::mat4 modelR = glm::mat4(1);
-		modelR = translate(modelR, glm::vec3(0.5f, 1.0f, 0.5f));
-		modelR = rotate(modelR, 0.5f, glm::vec3(0.0f, 1.0f, 0.0f));
+		glm::mat4 modelR = glm::mat4(1);
+
+		float ang4 = glm::radians(135.0f);
+
+		float x4 = radio * cos(ang4);
+		float z4 = radio * sin(ang4);
+
+		modelR = glm::translate(modelR, glm::vec3(x4, 3.0f, z4));
+		modelR = glm::rotate(modelR, ang1, glm::vec3(0.0f, 1.0f, 0.0f));
+		modelR = glm::scale(modelR, glm::vec3(0.5f, 0.0f, 0.1f));
+
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelR));
-		glDrawArrays(GL_TRIANGLES, 0, 36);*/
+		glDrawArrays(GL_TRIANGLES, 0, 36);
 		//-------------------------------------------------------------------------------------
 
 		//-------------------------------------------------------------------------------------
 		//Cubo I
-		/*glm::mat4 modelI = glm::mat4(1);
-		modelI = translate(modelI, glm::vec3(0.5f, 1.0f, 0.5f));
-		modelI = rotate(modelI, 0.5f, glm::vec3(0.0f, 1.0f, 0.0f));
+		glm::mat4 modelI = glm::mat4(1);
+
+		float ang5 = glm::radians(180.0f);
+
+		float x5 = radio * cos(ang5);
+		float z5 = radio * sin(ang5);
+
+		modelI = glm::translate(modelI, glm::vec3(x5, 4.0f, z5));
+		modelI = glm::rotate(modelI, ang1, glm::vec3(0.0f, 1.0f, 0.0f));
+		modelI = glm::scale(modelI, glm::vec3(1.0f, 0.0f, 0.5f));
+
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelI));
-		glDrawArrays(GL_TRIANGLES, 0, 36);*/
+		glDrawArrays(GL_TRIANGLES, 0, 36);
 		//-------------------------------------------------------------------------------------
 
 		//-------------------------------------------------------------------------------------
 		//Cubo S
-		/*glm::mat4 modelS = glm::mat4(1);
-		modelS = translate(modelS, glm::vec3(0.5f, 1.0f, 0.5f));
-		modelS = rotate(modelS, 0.5f, glm::vec3(0.0f, 1.0f, 0.0f));
+		glm::mat4 modelS = glm::mat4(1);
+
+		float ang6 = glm::radians(225.0f);
+
+		float x6 = radio * cos(ang6);
+		float z6 = radio * sin(ang6);
+
+		modelS = glm::translate(modelS, glm::vec3(x6, 5.0f, z6));
+		modelS = glm::rotate(modelS, ang6, glm::vec3(0.0f, 1.0f, 0.0f));
+		modelS = glm::scale(modelS, glm::vec3(0.0f, 0.0f, 0.2f));
+
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelS));
-		glDrawArrays(GL_TRIANGLES, 0, 36);*/
+		glDrawArrays(GL_TRIANGLES, 0, 36);
 		//-------------------------------------------------------------------------------------
 
 		//-------------------------------------------------------------------------------------
 		//Cubo T
-		/*glm::mat4 modelT = glm::mat4(1);
-		modelT = translate(modelT, glm::vec3(0.5f, 1.0f, 0.5f));
-		modelT = rotate(modelT, 0.5f, glm::vec3(0.0f, 1.0f, 0.0f));
+		glm::mat4 modelT = glm::mat4(1);
+
+		float ang7 = glm::radians(270.0f);
+
+		float x7 = radio * cos(ang7);
+		float z7 = radio * sin(ang7);
+
+		modelT = glm::translate(modelT, glm::vec3(x7, 6.0f, z7));
+		modelT= glm::rotate(modelT, ang1, glm::vec3(0.0f, 1.0f, 0.0f));
+		modelT = glm::scale(modelT, glm::vec3(0.6f, 0.0f, 0.1f));
+
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelT));
-		glDrawArrays(GL_TRIANGLES, 0, 36);*/
+		glDrawArrays(GL_TRIANGLES, 0, 36);
 		//-------------------------------------------------------------------------------------
 
 		//-------------------------------------------------------------------------------------
 		//Cubo O
-		/*glm::mat4 modelO = glm::mat4(1);
-		modelO = translate(modelO, glm::vec3(0.5f, 1.0f, 0.5f));
-		modelO = rotate(modelO, 0.5f, glm::vec3(0.0f, 1.0f, 0.0f));
+		glm::mat4 modelO = glm::mat4(1);
+
+		float ang8 = glm::radians(315.0f);
+
+		float x8 = radio * cos(ang8);
+		float z8 = radio * sin(ang8);
+
+		modelO = glm::translate(modelO, glm::vec3(x8, 7.0f, z8));
+		modelO = glm::rotate(modelO, ang1, glm::vec3(0.0f, 1.0f, 0.0f));
+		modelO = glm::scale(modelO, glm::vec3(0.0f, 0.0f, 0.0f));
+
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelO));
-		glDrawArrays(GL_TRIANGLES, 0, 36);*/
+		glDrawArrays(GL_TRIANGLES, 0, 36);
 		//-------------------------------------------------------------------------------------
 
 
