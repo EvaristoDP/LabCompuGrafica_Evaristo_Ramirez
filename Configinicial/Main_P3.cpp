@@ -219,10 +219,14 @@ int main() {
 
 		// Draw our first triangle
 		ourShader.Use();
-		glm::mat4 model=glm::mat4(1);
-		glm::mat4 view=glm::mat4(1);
-	
-		view = glm::translate(view, glm::vec3(0.0f,0.0f,-1.0f));
+		glm::mat4 view = glm::mat4(1);
+
+		view = glm::translate(view, glm::vec3(0.0f, -1.0f, -5.0f)); //Esta es la cámara.
+
+		//CUBO E ----------------------------------------------------------------------------
+		glm::mat4 modelE=glm::mat4(1); //aquí empieza el primer cubo
+
+
 		//model = glm::rotate( model, 0.5f, glm::vec3( 1.0f, 0.0f, 0.0f ) ); // use to compare orthographic and perspective projection
 		//model = glm::scale(model, glm::vec3(500.0f, 500.0f, 500.0f));
 		//view = glm::translate( view, glm::vec3( screenWidth / 2, screenHeight / 2,-700.0f ) ); // use with orthographic projection
@@ -233,17 +237,76 @@ int main() {
 		
 		glUniformMatrix4fv(projecLoc, 1, GL_FALSE, glm::value_ptr(projection));
 		glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelE));
+
 
 		glBindVertexArray(VAO);
 		glDrawArrays(GL_TRIANGLES, 0, 36);
+		//-------------------------------------------------------------------------------------
+		//Cubo V
+		glm::mat4 modelV = glm::mat4(1);
+		modelV = translate(modelV, glm::vec3(0.5f, 1.0f, 0.5f));
+		modelV = rotate(modelV, 0.5f, glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelV));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+		//-------------------------------------------------------------------------------------
+
+		//-------------------------------------------------------------------------------------
+		//Cubo A
+		/*glm::mat4 modelA = glm::mat4(1);
+		modelA = translate(modelA, glm::vec3(0.5f, 1.0f, 0.5f));
+		modelA = rotate(modelA, 0.5f, glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelA));
+		glDrawArrays(GL_TRIANGLES, 0, 36);*/
+		//-------------------------------------------------------------------------------------
+
+		//-------------------------------------------------------------------------------------
+		//Cubo R
+		/*glm::mat4 modelR = glm::mat4(1);
+		modelR = translate(modelR, glm::vec3(0.5f, 1.0f, 0.5f));
+		modelR = rotate(modelR, 0.5f, glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelR));
+		glDrawArrays(GL_TRIANGLES, 0, 36);*/
+		//-------------------------------------------------------------------------------------
+
+		//-------------------------------------------------------------------------------------
+		//Cubo I
+		/*glm::mat4 modelI = glm::mat4(1);
+		modelI = translate(modelI, glm::vec3(0.5f, 1.0f, 0.5f));
+		modelI = rotate(modelI, 0.5f, glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelI));
+		glDrawArrays(GL_TRIANGLES, 0, 36);*/
+		//-------------------------------------------------------------------------------------
+
+		//-------------------------------------------------------------------------------------
+		//Cubo S
+		/*glm::mat4 modelS = glm::mat4(1);
+		modelS = translate(modelS, glm::vec3(0.5f, 1.0f, 0.5f));
+		modelS = rotate(modelS, 0.5f, glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelS));
+		glDrawArrays(GL_TRIANGLES, 0, 36);*/
+		//-------------------------------------------------------------------------------------
+
+		//-------------------------------------------------------------------------------------
+		//Cubo T
+		/*glm::mat4 modelT = glm::mat4(1);
+		modelT = translate(modelT, glm::vec3(0.5f, 1.0f, 0.5f));
+		modelT = rotate(modelT, 0.5f, glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelT));
+		glDrawArrays(GL_TRIANGLES, 0, 36);*/
+		//-------------------------------------------------------------------------------------
+
+		//-------------------------------------------------------------------------------------
+		//Cubo O
+		/*glm::mat4 modelO = glm::mat4(1);
+		modelO = translate(modelO, glm::vec3(0.5f, 1.0f, 0.5f));
+		modelO = rotate(modelO, 0.5f, glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelO));
+		glDrawArrays(GL_TRIANGLES, 0, 36);*/
+		//-------------------------------------------------------------------------------------
+
+
 		glBindVertexArray(0);
-
-
-
-		
-		
 		
 
 		// Swap the screen buffers
