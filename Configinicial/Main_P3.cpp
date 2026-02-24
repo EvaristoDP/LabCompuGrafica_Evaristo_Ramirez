@@ -221,7 +221,7 @@ int main() {
 		ourShader.Use();
 		glm::mat4 view = glm::mat4(1);
 
-		view = glm::translate(view, glm::vec3(0.0f, 0.0f, -6.0f)); //Esta es la cámara.
+		view = glm::translate(view, glm::vec3(0.0f, -2.0f, -10.0f)); //Esta es la cámara.
 
 		//CUBO E ----------------------------------------------------------------------------
 		glm::mat4 modelE=glm::mat4(1); //aquí empieza el primer cubo
@@ -235,7 +235,7 @@ int main() {
 
 		modelE = glm::translate(modelE, glm::vec3(x1, 0.0f, z1));
 		modelE = glm::rotate(modelE, ang1, glm::vec3(0.0f, 1.0f, 0.0f));
-		modelE = glm::scale(modelE, glm::vec3(0.0f, 0.0f, 0.0f));
+		modelE = glm::scale(modelE, glm::vec3(1.0f, 1.0f, 1.0f));
 
 
 		//model = glm::rotate( model, 0.5f, glm::vec3( 1.0f, 0.0f, 0.0f ) ); // use to compare orthographic and perspective projection
@@ -280,7 +280,7 @@ int main() {
 
 		modelA = glm::translate(modelA, glm::vec3(x3, 2.0f, z3));
 		modelA = glm::rotate(modelA, ang1, glm::vec3(0.0f, 1.0f, 0.0f));
-		modelA = glm::scale(modelA, glm::vec3(0.8f, 0.0f, 0.9f));
+		modelA = glm::scale(modelA, glm::vec3(1.0f, 1.0f, 1.0f));
 
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelA));
 		glDrawArrays(GL_TRIANGLES, 0, 36);
@@ -297,7 +297,7 @@ int main() {
 
 		modelR = glm::translate(modelR, glm::vec3(x4, 3.0f, z4));
 		modelR = glm::rotate(modelR, ang1, glm::vec3(0.0f, 1.0f, 0.0f));
-		modelR = glm::scale(modelR, glm::vec3(0.5f, 0.0f, 0.1f));
+		modelR = glm::scale(modelR, glm::vec3(1.0f, 1.0f, 1.0f));
 
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelR));
 		glDrawArrays(GL_TRIANGLES, 0, 36);
@@ -314,7 +314,7 @@ int main() {
 
 		modelI = glm::translate(modelI, glm::vec3(x5, 4.0f, z5));
 		modelI = glm::rotate(modelI, ang1, glm::vec3(0.0f, 1.0f, 0.0f));
-		modelI = glm::scale(modelI, glm::vec3(1.0f, 0.0f, 0.5f));
+		modelI = glm::scale(modelI, glm::vec3(1.0f, 1.0f, 1.0f));
 
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelI));
 		glDrawArrays(GL_TRIANGLES, 0, 36);
@@ -331,7 +331,7 @@ int main() {
 
 		modelS = glm::translate(modelS, glm::vec3(x6, 5.0f, z6));
 		modelS = glm::rotate(modelS, ang6, glm::vec3(0.0f, 1.0f, 0.0f));
-		modelS = glm::scale(modelS, glm::vec3(0.0f, 0.0f, 0.2f));
+		modelS = glm::scale(modelS, glm::vec3(1.0f, 1.0f, 1.0f));
 
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelS));
 		glDrawArrays(GL_TRIANGLES, 0, 36);
@@ -348,7 +348,7 @@ int main() {
 
 		modelT = glm::translate(modelT, glm::vec3(x7, 6.0f, z7));
 		modelT= glm::rotate(modelT, ang1, glm::vec3(0.0f, 1.0f, 0.0f));
-		modelT = glm::scale(modelT, glm::vec3(0.6f, 0.0f, 0.1f));
+		modelT = glm::scale(modelT, glm::vec3(1.0f, 1.0f, 1.0f));
 
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelT));
 		glDrawArrays(GL_TRIANGLES, 0, 36);
@@ -365,7 +365,7 @@ int main() {
 
 		modelO = glm::translate(modelO, glm::vec3(x8, 7.0f, z8));
 		modelO = glm::rotate(modelO, ang1, glm::vec3(0.0f, 1.0f, 0.0f));
-		modelO = glm::scale(modelO, glm::vec3(0.0f, 0.0f, 0.0f));
+		modelO = glm::scale(modelO, glm::vec3(1.0f, 1.0f, 1.0f));
 
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelO));
 		glDrawArrays(GL_TRIANGLES, 0, 36);
