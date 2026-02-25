@@ -1,3 +1,8 @@
+//Previo 4. Proyecciones y transformaciones.
+//Alumno: Evaristo Ramírez del Prado Monte Rosa. No. cuenta: 313136120
+//Fecha de entrega: 24 de febrero 2026
+//------------------------------------------------------------------------
+
 #include<iostream>
 
 //#define GLEW_STATIC
@@ -34,7 +39,7 @@ int main() {
 
 	glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 
-	GLFWwindow *window = glfwCreateWindow(WIDTH, HEIGHT, "Modelado geometrico", nullptr, nullptr);
+	GLFWwindow *window = glfwCreateWindow(WIDTH, HEIGHT, "Previo 4. Modelado geometrico - Evaristo Ramírez del Prado", nullptr, nullptr);
 
 	int screenWidth, screenHeight;
 
@@ -198,6 +203,12 @@ int main() {
 		glBindVertexArray(VAO);
 	
 	    model = glm::mat4(1.0f);
+//-----------------------------------------------------------
+		//Cambiando la escala del cubo.
+		model = glm::scale(model, glm::vec3(5.0f, 0.3f, 2.0f));
+		//Moviendo la mesa
+		model = glm::translate(model, glm::vec3(0.0f, 1.0f, 0.0f));
+
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		glDrawArrays(GL_TRIANGLES, 0, 36);
 		glBindVertexArray(0);
@@ -220,17 +231,17 @@ int main() {
 	 if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)  //GLFW_RELEASE
 		 glfwSetWindowShouldClose(window, true);
 	 if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
-		 movX += 0.08f;
+		 movX += 0.03f;
 	 if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
-		 movX -= 0.08f;
+		 movX -= 0.03f;
 	 if (glfwGetKey(window, GLFW_KEY_PAGE_UP) == GLFW_PRESS)
-		 movY += 0.08f;
+		 movY += 0.03f;
 	 if (glfwGetKey(window, GLFW_KEY_PAGE_DOWN) == GLFW_PRESS)
-		 movY -= 0.08f;
+		 movY -= 0.03f;
 	 if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-		 movZ -= 0.08f;
+		 movZ -= 0.03f;
 	 if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-		 movZ += 0.08f;
+		 movZ += 0.03f;
 	 if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)
 		 rot += 0.4f;
 	 if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)
