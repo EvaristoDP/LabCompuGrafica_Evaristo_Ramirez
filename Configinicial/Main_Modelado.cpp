@@ -207,19 +207,58 @@ int main() {
 		//Cambiando la escala del cubo.
 		model = glm::scale(model, glm::vec3(5.0f, 0.3f, 2.0f));
 		//Moviendo la mesa
-		model = glm::translate(model, glm::vec3(0.0f, 3.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(0.0f, 4.0f, 0.0f));
 
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		glDrawArrays(GL_TRIANGLES, 0, 36);
-		glBindVertexArray(0);
 
 //-----------------------------------------------------------
 		//Nueva pata de la mesa - 1
 		model = glm::mat4(1.0f);
 		//Tamaño de la pata
 		model = glm::scale(model, glm::vec3(0.2f, 3.0f, 0.2f));
+		//Moviendo la pata
+		model = glm::translate(model, glm::vec3(6.0f, 0.0f, 3.0f));
+		//
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
 
-				
+//-----------------------------------------------------------
+		//Pata de la mesa - 2
+		model = glm::mat4(1.0f);
+		//Tamaño de la pata
+		model = glm::scale(model, glm::vec3(0.2f, 3.0f, 0.2f));
+		//Moviendo la pata
+		model = glm::translate(model, glm::vec3(6.0f, 0.0f, -3.0f));
+		//
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+//-----------------------------------------------------------
+		//Pata de la mesa - 3
+		model = glm::mat4(1.0f);
+		//Tamaño de la pata
+		model = glm::scale(model, glm::vec3(0.2f, 3.0f, 0.2f));
+		//Moviendo la pata
+		model = glm::translate(model, glm::vec3(-6.0f, 0.0f, 3.0f));
+		//
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+//-----------------------------------------------------------
+		//Pata de la mesa - 4
+		model = glm::mat4(1.0f);
+		//Tamaño de la pata
+		model = glm::scale(model, glm::vec3(0.2f, 3.0f, 0.2f));
+		//Moviendo la pata
+		model = glm::translate(model, glm::vec3(-6.0f, 0.0f, -3.0f));
+		//
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+
+		//----FINAL-----------
+		glBindVertexArray(0);
 
 		// Swap the screen buffers
 		glfwSwapBuffers(window);
