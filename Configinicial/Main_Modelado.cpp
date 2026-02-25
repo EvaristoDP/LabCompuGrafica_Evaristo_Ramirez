@@ -39,7 +39,7 @@ int main() {
 
 	glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 
-	GLFWwindow *window = glfwCreateWindow(WIDTH, HEIGHT, "Previo 4. Modelado geometrico - Evaristo Ramírez del Prado", nullptr, nullptr);
+	GLFWwindow *window = glfwCreateWindow(WIDTH, HEIGHT, "Previo 4. Modelado geometrico - Evaristo Ramirez del Prado", nullptr, nullptr);
 
 	int screenWidth, screenHeight;
 
