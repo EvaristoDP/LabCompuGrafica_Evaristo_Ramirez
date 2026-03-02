@@ -214,7 +214,7 @@ int main() {
 		glDrawArrays(GL_TRIANGLES, 0, 36);
 
 		//-----------------------------------------------------------
-		//Muslos
+		//Muslos traseros
 		model = glm::mat4(1.0f);
 		//Movimiento
 		model = glm::translate(model, glm::vec3(-1.5f, -0.8f, 0.7f));
@@ -233,6 +233,98 @@ int main() {
 
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		glDrawArrays(GL_TRIANGLES, 0, 36);
+		//-------------------------------------------------------------
+		//Pantorrillas
+		model = glm::mat4(1.0f);
+		//Movimiento
+		model = glm::translate(model, glm::vec3(-1.0f, -1.8f, 0.7f));
+		//Escala
+		model = glm::scale(model, glm::vec3(0.6f, 1.3f, 0.4f));
+		//
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-1.0f, -1.8f, -0.7f));
+		model = glm::scale(model, glm::vec3(0.6f, 1.3f, 0.4f));
+		//
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		//-----------------------------------------------------------
+		//Pies traseros
+		model = glm::mat4(1.0f);
+		//Movimiento
+		model = glm::translate(model, glm::vec3(-0.8f, -2.3f, 0.7f));
+		//Escala
+		model = glm::scale(model, glm::vec3(1.2f, 0.3f, 0.4f));
+		//
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-0.8f, -2.3f, -0.7f));
+		model = glm::scale(model, glm::vec3(1.2f, 0.3f, 0.4f));
+
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		//-------------------------------------------------------------
+		//Patas delanteras - Muslos
+		model = glm::mat4(1.0f);
+		//Movimiento
+		model = glm::translate(model, glm::vec3(1.5f, -0.5f, 0.7f));
+		//Escala
+		model = glm::scale(model, glm::vec3(0.6f, 1.7f, 0.4f));
+		//
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(1.5f, -0.5f, -0.7f));
+		model = glm::scale(model, glm::vec3(0.6f, 1.7f, 0.4f));
+		//
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		//-----------------------------------------------------------
+		//Pantorrillas delanteras
+		model = glm::mat4(1.0f);
+		//Movimiento
+		model = glm::translate(model, glm::vec3(1.7f, -1.2f, 0.7f));
+		//Rotacion
+		model = glm::rotate(model, 0.6108f, glm::vec3(0.0f, 0.0f, 1.0f));
+		//Escala
+		model = glm::scale(model, glm::vec3(0.5f, 1.7f, 0.3f));
+		//
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(1.7f, -1.2f, -0.7f));
+		model = glm::rotate(model, 0.6108f, glm::vec3(0.0f, 0.0f, 1.0f));
+		model = glm::scale(model, glm::vec3(0.5f, 1.7f, 0.3f));
+
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+
+		//Pies delanteros
+		//model = glm::mat4(1.0f);
+		////Movimiento
+		//model = glm::translate(model, glm::vec3(1.5f, -0.5f, 0.7f));
+		////Escala
+		//model = glm::scale(model, glm::vec3(0.6f, 1.7f, 0.4f));
+		////
+		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		//glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		//model = glm::mat4(1.0f);
+		//model = glm::translate(model, glm::vec3(1.5f, -0.5f, -0.7f));
+		//model = glm::scale(model, glm::vec3(0.6f, 1.7f, 0.4f));
+		////
+		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		//glDrawArrays(GL_TRIANGLES, 0, 36);
 
 
 		//----FINAL-----------
