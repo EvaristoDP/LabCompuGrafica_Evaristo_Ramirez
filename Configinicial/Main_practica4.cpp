@@ -455,6 +455,7 @@ int main() {
 		model = glm::mat4(1.0f);
 
 		model = glm::translate(model, glm::vec3(4.0f, 1.2f, 0.0f));
+		model = glm::rotate(model, 0.1745f, glm::vec3(0.0f, 0.0f, 1.0f));
 		model = glm::scale(model, glm::vec3(0.9f, 0.1f, 0.7f));
 		//
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
@@ -463,6 +464,7 @@ int main() {
 		model = glm::mat4(1.0f);
 
 		model = glm::translate(model, glm::vec3(4.0f, 0.9f, 0.0f));
+		model = glm::rotate(model, -0.1745f, glm::vec3(0.0f, 0.0f, 1.0f));
 		model = glm::scale(model, glm::vec3(0.9f, 0.1f, 0.7f));
 		//
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
