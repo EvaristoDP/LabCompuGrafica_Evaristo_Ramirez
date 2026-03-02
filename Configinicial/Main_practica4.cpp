@@ -87,7 +87,7 @@ int main() {
 
 	// use with Perspective Projection
 	float vertices[] = {
-		-0.5f, -0.5f, 0.5f,  /*---*/1.0f, 0.0f, 0.0f,//Cara:  frontal. +Z
+		-0.5f, -0.5f, 0.5f,  /*---*/1.0f, 0.0f, 0.0f,//Cara:  frontal.
 		 0.5f, -0.5f, 0.5f,  /*---*/1.0f, 0.0f, 0.0f,//Color: Rojo.
 		 0.5f,  0.5f, 0.5f,  /*---*/1.0f, 0.0f, 0.0f,
 		 0.5f,  0.5f, 0.5f,  /*---*/1.0f, 0.0f, 0.0f,
@@ -203,23 +203,34 @@ int main() {
 		glBindVertexArray(VAO);
 
 		model = glm::mat4(1.0f);
-		//-----------------------------------------------------------
-				//Cambiando la escala del cubo.
-		model = glm::scale(model, glm::vec3(5.0f, 0.3f, 2.0f));
-		//Moviendo la mesa
-		model = glm::translate(model, glm::vec3(0.0f, 4.0f, 0.0f));
+		//-------------------------------------------------
+		//					DRAGÓN
+		//-------------------------------------------------
+		//	Torso
+		model = glm::scale(model, glm::vec3(4.0f, 1.0f, 1.5f));
+		model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f));
 
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		glDrawArrays(GL_TRIANGLES, 0, 36);
 
 		//-----------------------------------------------------------
-				//Nueva pata de la mesa - 1
+		//Muslos
 		model = glm::mat4(1.0f);
-		//Tamaño de la pata
-		model = glm::scale(model, glm::vec3(0.2f, 3.0f, 0.2f));
-		//Moviendo la pata
-		model = glm::translate(model, glm::vec3(6.0f, 0.0f, 3.0f));
+		//Movimiento
+		model = glm::translate(model, glm::vec3(-1.5f, -0.8f, 0.7f));
+		//Rotacion
+		model = glm::rotate(model, 0.7853f, glm::vec3(0.0f, 0.0f, 1.0f));
+		//Escala
+		model = glm::scale(model, glm::vec3(0.7f, 1.8f, 0.5f));
 		//
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-1.5f, -0.8f, -0.7f));
+		model = glm::rotate(model, 0.7853f, glm::vec3(0.0f, 0.0f, 1.0f));
+		model = glm::scale(model, glm::vec3(0.7f, 1.8f, 0.5f));
+
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		glDrawArrays(GL_TRIANGLES, 0, 36);
 
