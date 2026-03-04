@@ -28,6 +28,8 @@ rot = 0.0f;
 //For model
 float	hombro = 0.0f;
 float	codo = 0.0f;
+float	mano = 0.0f;
+float	dedo1 = 0.0f;
 
 
 
@@ -224,6 +226,26 @@ int main() {
 		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		glDrawArrays(GL_TRIANGLES, 0, 36);//B
+		//-----------------
+		//Mano
+		model = glm::translate(modelTemp, glm::vec3(1.0f, 0.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(mano), glm::vec3(1.0f, 0.0f, 0.0f));
+		modelTemp2 = model = glm::translate(model, glm::vec3(0.25f, 0.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.5f, 1.0f, 1.0f));
+		color = glm::vec3(2.0f, 0.5f, 1.0f);
+		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36);//C
+		//------------------
+		//Dedo1
+		model = glm::translate(modelTemp, glm::vec3(0.25f, 0.35f, 0.375f));
+		model = glm::rotate(model, glm::radians(dedo1), glm::vec3(0.0f, 0.0f, 1.0f));
+		modelTemp = model = glm::translate(model, glm::vec3(0.5f, 0.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(1.0f, 0.3f, 0.25f));
+		color = glm::vec3(0.0f, 0.5f, 1.0f);
+		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36);//D
 
 
 
@@ -266,6 +288,18 @@ int main() {
 		 hombro += 0.18f;
 	 if (glfwGetKey(window, GLFW_KEY_F) == GLFW_PRESS)
 		 hombro -= 0.18f;
+	 if (glfwGetKey(window, GLFW_KEY_G) == GLFW_PRESS)
+		 codo += 0.18f;
+	 if (glfwGetKey(window, GLFW_KEY_T) == GLFW_PRESS)
+		 codo -= 0.18f;
+	 if (glfwGetKey(window, GLFW_KEY_H) == GLFW_PRESS)
+		 mano += 0.18f;
+	 if (glfwGetKey(window, GLFW_KEY_Y) == GLFW_PRESS)
+		 mano -= 0.18f;
+	 if (glfwGetKey(window, GLFW_KEY_J) == GLFW_PRESS)
+		 dedo1 += 0.18f;
+	 if (glfwGetKey(window, GLFW_KEY_U) == GLFW_PRESS)
+		 dedo1 -= 0.18f;
  }
 
 
