@@ -188,6 +188,7 @@ int main() {
 		glm::mat4 view=glm::mat4(1);
 		glm::mat4 modelTemp = glm::mat4(1.0f); //Temp
 		glm::mat4 modelTemp2 = glm::mat4(1.0f); //Temp
+		glm::mat4 modelTemp3 = glm::mat4(1.0f);
 
 
 
@@ -230,7 +231,7 @@ int main() {
 		//Mano
 		model = glm::translate(modelTemp, glm::vec3(1.0f, 0.0f, 0.0f));
 		model = glm::rotate(model, glm::radians(mano), glm::vec3(1.0f, 0.0f, 0.0f));
-		modelTemp2 = model = glm::translate(model, glm::vec3(0.25f, 0.0f, 0.0f));
+		modelTemp2 = modelTemp = model = glm::translate(model, glm::vec3(0.25f, 0.0f, 0.0f));
 		model = glm::scale(model, glm::vec3(0.5f, 1.0f, 1.0f));
 		color = glm::vec3(2.0f, 0.5f, 1.0f);
 		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
