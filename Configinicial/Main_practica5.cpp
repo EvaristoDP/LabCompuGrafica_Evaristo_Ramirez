@@ -31,6 +31,7 @@ float	codo = 0.0f;
 float	mano = 0.0f;
 float	dedo1 = 0.0f, dedo1_1 = 0.0f;
 float	dedo2 = 0.0f, dedo2_1 = 0.0f;
+float   dedo3 = 0.0f, dedo3_1 = 0.0f;
 
 
 int main() {
