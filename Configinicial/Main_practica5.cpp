@@ -47,7 +47,7 @@ int main() {
 
 	glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 
-	GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Previo 5. Evaristo Ramirez del Prado", nullptr, nullptr);
+	GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Practica 5. Evaristo Ramirez del Prado", nullptr, nullptr);
 
 	int screenWidth, screenHeight;
 
@@ -190,8 +190,11 @@ int main() {
 		glm::mat4 model = glm::mat4(1);
 		glm::mat4 view = glm::mat4(1);
 		glm::mat4 modelTempMano = glm::mat4(1.0f); //Temporal que se quede en el centro de la palma.
-		glm::mat4 modelTemp = glm::mat4(1.0f); //Temp para dedo 1
+		glm::mat4 modelTemp = glm::mat4(1.0f);  //Temp para dedo 1
 		glm::mat4 modelTemp2 = glm::mat4(1.0f); //Temp para dedo 2
+		glm::mat4 modelTemp3 = glm::mat4(1.0f); //Temp para dedo 3
+		glm::mat4 modelTemp4 = glm::mat4(1.0f); //Temp para dedo 4
+		glm::mat4 modelTemp5 = glm::mat4(1.0f); //Temp para dedo 5
 
 
 
@@ -241,7 +244,7 @@ int main() {
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		glDrawArrays(GL_TRIANGLES, 0, 36);//C
 		//------------------
-		modelTempMano = glm::translate(modelTemp, glm::vec3(0.25f, 0.0f, 0.0f));
+		modelTemp2 = modelTempMano = glm::translate(modelTemp, glm::vec3(0.25f, 0.0f, 0.0f));
 		//Dedo1
 		model = glm::translate(modelTempMano, glm::vec3(0.0f, -0.5f, 0.375f));
 		model = glm::rotate(model, glm::radians(dedo1), glm::vec3(0.0f, 0.0f, 1.0f));
@@ -262,9 +265,9 @@ int main() {
 		glDrawArrays(GL_TRIANGLES, 0, 36);//E
 
 		//Dedo2
-		model = glm::translate(modelTempMano, glm::vec3(0.5f, -0.5f, -0.375f));
+		model = glm::translate(modelTempMano, glm::vec3(0.0f, -0.5f, -0.375f));
 		model = glm::rotate(model, glm::radians(dedo2), glm::vec3(0.0f, 0.0f, 1.0f));
-		modelTemp = model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f));
+		modelTemp2 = model = glm::translate(model, glm::vec3(0.5f, 0.0f, 0.0f));
 		model = glm::scale(model, glm::vec3(1.0f, 0.25f, 0.25f));
 		color = glm::vec3(0.5f, 0.5f, 1.0f);
 		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
@@ -272,7 +275,7 @@ int main() {
 		glDrawArrays(GL_TRIANGLES, 0, 36);//F
 
 		//Dedo2_1
-		model = glm::translate(modelTemp, glm::vec3(0.5f, 0.0f, 0.0f));
+		model = glm::translate(modelTemp2, glm::vec3(0.5f, 0.0f, 0.0f));
 		model = glm::rotate(model, glm::radians(dedo2_1), glm::vec3(0.0f, 0.0f, 1.0f));
 		model = glm::translate(model, glm::vec3(0.5f, 0.0f, 0.0f));
 		model = glm::scale(model, glm::vec3(1.0f, 0.25f, 0.25f));
@@ -281,6 +284,35 @@ int main() {
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		glDrawArrays(GL_TRIANGLES, 0, 36);//G
 
+		//Dedo3
+		model = translate(modelTempMano, glm::vec3(0.0f, 0.0f, 0.5f));
+		model = rotate(model, glm::radians(dedo3), glm::vec3(0.0f, 1.0f, 0.0f));
+		modelTemp3 = model = glm::translate(model, glm::vec3(0.5f, 0.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(1.0f, 0.25f, 0.25f));
+		color = glm::vec3(0.0f, 1.0f, 0.0f);
+		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36);//H
+
+		//Dedo4
+		model = translate(modelTempMano, glm::vec3(0.0f, 0.0f, -0.5f));
+		model = rotate(model, glm::radians(dedo4), glm::vec3(0.0f, 1.0f, 0.0f));
+		modelTemp4 = model = glm::translate(model, glm::vec3(0.5f, 0.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(1.0f, 0.25f, 0.25f));
+		color = glm::vec3(1.0f, 0.0f, 0.0f);
+		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36);//I
+
+		//Dedo5
+		model = translate(modelTempMano, glm::vec3(0.0f, 0.5f, 0.0f));
+		model = rotate(model, glm::radians(dedo4), glm::vec3(0.0f, 0.0f, 1.0f));
+		modelTemp5 = model = glm::translate(model, glm::vec3(0.5f, 0.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(1.0f, 0.25f, 0.25f));
+		color = glm::vec3(0.0f, 0.0f, 1.0f);
+		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36);//J
 
 		//Final
 		glBindVertexArray(0);
