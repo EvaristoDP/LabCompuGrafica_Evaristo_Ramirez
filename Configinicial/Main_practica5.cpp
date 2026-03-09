@@ -219,7 +219,7 @@ int main() {
 		model = glm::rotate(model, glm::radians(hombro), glm::vec3(0.0f, 0.0, 1.0f)); //hombro
 		modelTemp = model = glm::translate(model, glm::vec3(1.5f, 0.0f, 0.0f));
 		model = glm::scale(model, glm::vec3(3.0f, 1.0f, 1.0f));
-		color = glm::vec3(0.0f, 1.0f, 0.0f);
+		color = glm::vec3(0.75f, 0.75f, 0.75f);
 		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		glDrawArrays(GL_TRIANGLES, 0, 36);//A
@@ -239,7 +239,7 @@ int main() {
 		model = glm::rotate(model, glm::radians(mano), glm::vec3(1.0f, 0.0f, 0.0f));
 		modelTemp2 = modelTemp = model = glm::translate(model, glm::vec3(0.25f, 0.0f, 0.0f));
 		model = glm::scale(model, glm::vec3(0.5f, 1.25f, 1.25f));
-		color = glm::vec3(2.0f, 0.5f, 1.0f);
+		color = glm::vec3(1.0f, 0.5f, 0.0f);
 		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		glDrawArrays(GL_TRIANGLES, 0, 36);//C
@@ -247,19 +247,19 @@ int main() {
 		modelTemp2 = modelTempMano = glm::translate(modelTemp, glm::vec3(0.25f, 0.0f, 0.0f));
 		//Dedo1
 		model = glm::translate(modelTempMano, glm::vec3(0.0f, -0.5f, 0.375f));
-		model = glm::rotate(model, glm::radians(dedo1), glm::vec3(0.0f, 0.0f, 1.0f));
+		model = glm::rotate(model, glm::radians(dedo1), glm::vec3(0.0f, 1.0f, 1.0f));
 		modelTemp = model = glm::translate(model, glm::vec3(0.5f, 0.0f, 0.0f));
 		model = glm::scale(model, glm::vec3(1.0f, 0.25f, 0.25f));
-		color = glm::vec3(0.0f, 0.5f, 1.0f);
+		color = glm::vec3(1.0f, 0.0f, 1.0f);
 		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		glDrawArrays(GL_TRIANGLES, 0, 36);//D
 		//Dedo1_1
 		model = glm::translate(modelTemp, glm::vec3(0.5f, 0.0f, 0.0f));
-		model = glm::rotate(model, glm::radians(dedo1_1), glm::vec3(0.0f, 0.0f, 1.0f));
+		model = glm::rotate(model, glm::radians(dedo1_1), glm::vec3(0.0f, 1.0f, 1.0f));
 		modelTemp = model = glm::translate(model, glm::vec3(0.5f, 0.0f, 0.0f));
 		model = glm::scale(model, glm::vec3(1.0f, 0.25f, 0.25f));
-		color = glm::vec3(1.0f, 1.0f, 0.0f);
+		color = glm::vec3(0.75f, 0.0f, 0.75f);
 		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		glDrawArrays(GL_TRIANGLES, 0, 36);//E
@@ -268,11 +268,10 @@ int main() {
 		model = glm::rotate(model, glm::radians(dedo1_2), glm::vec3(0.0f, 0.0f, 1.0f));
 		model = translate(model, glm::vec3(0.25f, 0.0f, 0.0f));
 		model = glm::scale(model, glm::vec3(0.5f, 0.25f, 0.25f));
-		color = glm::vec3(0.5f, 0.5f, 0.0f);
+		color = glm::vec3(0.5f, 0.0f, 0.5f);
 		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		glDrawArrays(GL_TRIANGLES, 0, 36);//E1
-
 		//-----------------------------------
 		//Dedo2
 		model = glm::translate(modelTempMano, glm::vec3(0.0f, -0.5f, -0.375f));
@@ -288,7 +287,7 @@ int main() {
 		model = glm::rotate(model, glm::radians(dedo2_1), glm::vec3(0.0f, 0.0f, 1.0f));
 		modelTemp2 = model = glm::translate(model, glm::vec3(0.5f, 0.0f, 0.0f));
 		model = glm::scale(model, glm::vec3(1.0f, 0.25f, 0.25f));
-		color = glm::vec3(0.5f, 1.0f, 0.0f);
+		color = glm::vec3(0.25f, 0.25f, 0.5f);
 		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		glDrawArrays(GL_TRIANGLES, 0, 36);//G
@@ -297,11 +296,10 @@ int main() {
 		model = glm::rotate(model, glm::radians(dedo2_2), glm::vec3(0.0f, 0.0f, 1.0f));
 		model = translate(model, glm::vec3(0.25f, 0.0f, 0.0f));
 		model = glm::scale(model, glm::vec3(0.5f, 0.25f, 0.25f));
-		color = glm::vec3(0.25f, 0.5f, 0.0f);
+		color = glm::vec3(0.125f, 0.125f, 0.25f);
 		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		glDrawArrays(GL_TRIANGLES, 0, 36);//E1
-
 		//-----------------------------------
 		//Dedo3
 		model = translate(modelTempMano, glm::vec3(0.0f, 0.0f, 0.5f));
@@ -312,7 +310,6 @@ int main() {
 		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		glDrawArrays(GL_TRIANGLES, 0, 36);//H
-
 		//Dedo3_1
 		model = glm::translate(modelTemp3, glm::vec3(0.5f, 0.0f, 0.0f));
 		model = glm::rotate(model, glm::radians(dedo3_1), glm::vec3(0.0f, 1.0f, 0.0f));
@@ -331,7 +328,6 @@ int main() {
 		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		glDrawArrays(GL_TRIANGLES, 0, 36);//E1
-
 		//-----------------------------------
 		//Dedo4
 		model = translate(modelTempMano, glm::vec3(0.0f, 0.0f, -0.5f));
@@ -342,7 +338,6 @@ int main() {
 		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		glDrawArrays(GL_TRIANGLES, 0, 36);//I
-
 		//Dedo4_1
 		model = glm::translate(modelTemp4, glm::vec3(0.5f, 0.0f, 0.0f));
 		model = glm::rotate(model, glm::radians(dedo4_1), glm::vec3(0.0f, 1.0f, 0.0f));
@@ -371,7 +366,6 @@ int main() {
 		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		glDrawArrays(GL_TRIANGLES, 0, 36);//J
-
 		//Dedo5_1
 		model = glm::translate(modelTemp5, glm::vec3(0.5f, 0.0f, 0.0f));
 		model = glm::rotate(model, glm::radians(dedo5_1), glm::vec3(0.0f, 0.0f, 0.1f));
@@ -410,6 +404,7 @@ int main() {
 void Inputs(GLFWwindow* window) {
 	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)  //GLFW_RELEASE
 		glfwSetWindowShouldClose(window, true);
+	//Movimiento de cámara
 	if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
 		movX += 0.04f;
 	if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
@@ -422,22 +417,31 @@ void Inputs(GLFWwindow* window) {
 		movZ -= 0.04f;
 	if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
 		movZ += 0.04f;
+	//Rotación de cámara
 	if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)
 		rot += 0.18f;
 	if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)
 		rot -= 0.18f;
+	//Rotación del hombro
 	if (glfwGetKey(window, GLFW_KEY_R) == GLFW_PRESS)
 		hombro += 0.18f;
 	if (glfwGetKey(window, GLFW_KEY_F) == GLFW_PRESS)
 		hombro -= 0.18f;
-	if (glfwGetKey(window, GLFW_KEY_G) == GLFW_PRESS)
-		codo += 0.18f;
-	if (glfwGetKey(window, GLFW_KEY_T) == GLFW_PRESS)
-		codo -= 0.18f;
+	//Rotación del codo
+	if (glfwGetKey(window, GLFW_KEY_G) == GLFW_PRESS) {
+		if(codo < 90.0f)
+			codo += 0.18f;
+	}
+	if (glfwGetKey(window, GLFW_KEY_T) == GLFW_PRESS) {
+		if(codo > -90.0f)
+			codo -= 0.18f;
+	}
+	//Rotación de la mano
 	if (glfwGetKey(window, GLFW_KEY_H) == GLFW_PRESS)
 		mano += 0.18f;
 	if (glfwGetKey(window, GLFW_KEY_Y) == GLFW_PRESS)
 		mano -= 0.18f;
+	//Rotación de los dedos
 	if (glfwGetKey(window, GLFW_KEY_J) == GLFW_PRESS) {
 		dedo1 += 0.18f;
 		std::cout << "Movimiendo dedo 1: " << dedo1 << std::endl;
