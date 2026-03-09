@@ -443,18 +443,24 @@ void Inputs(GLFWwindow* window) {
 		mano -= 0.18f;
 	//Rotación de falanges 1
 	if (glfwGetKey(window, GLFW_KEY_Z) == GLFW_PRESS) {
-		dedo1 += 0.18f;
-		dedo2 += 0.18f;
-		dedo3 += 0.18f;
-		dedo4 -= 0.18f;
-		dedo5 -= 0.18f;
+		if (dedo1_1 == 0.0f && dedo1_2 == 0.0f) {
+			if (dedo1 < 9) {
+				dedo1 += 0.18f;
+				dedo2 += 0.18f;
+				dedo3 += 0.18f;
+				dedo4 -= 0.18f;
+				dedo5 -= 0.18f;
+			}
+		}
 	}
 	if (glfwGetKey(window, GLFW_KEY_X) == GLFW_PRESS) {
-		dedo1 -= 0.18f;
-		dedo2 -= 0.18f;
-		dedo3 -= 0.18f;
-		dedo4 += 0.18f;
-		dedo5 += 0.18f;
+		if (dedo1 > -75.0f) {
+			dedo1 -= 0.18f;
+			dedo2 -= 0.18f;
+			dedo3 -= 0.18f;
+			dedo4 += 0.18f;
+			dedo5 += 0.18f;
+		}
 	}
 	//Rotación de falanges 2
 	if (glfwGetKey(window, GLFW_KEY_C) == GLFW_PRESS) {
