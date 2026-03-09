@@ -29,9 +29,11 @@ rot = 0.0f;
 float	hombro = 0.0f;
 float	codo = 0.0f;
 float	mano = 0.0f;
-float	dedo1 = 0.0f, dedo1_1 = 0.0f;
-float	dedo2 = 0.0f, dedo2_1 = 0.0f;
-float   dedo3 = 0.0f, dedo3_1 = 0.0f;
+float	dedo1 = 0.0f, dedo1_1 = 0.0f, dedo1_2 = 0.0f;
+float	dedo2 = 0.0f, dedo2_1 = 0.0f, dedo2_2 = 0.0f;
+float   dedo3 = 0.0f, dedo3_1 = 0.0f, dedo3_2 = 0.0f;
+float	dedo4 = 0.0f, dedo4_1 = 0.0f, dedo4_2 = 0.0f;
+float	dedo5 = 0.0f, dedo5_1 = 0.0f, dedo5_2 = 0.0f; 
 
 
 int main() {
@@ -233,7 +235,7 @@ int main() {
 		model = glm::translate(modelTemp, glm::vec3(1.0f, 0.0f, 0.0f));
 		model = glm::rotate(model, glm::radians(mano), glm::vec3(1.0f, 0.0f, 0.0f));
 		modelTemp2 = modelTemp = model = glm::translate(model, glm::vec3(0.25f, 0.0f, 0.0f));
-		model = glm::scale(model, glm::vec3(0.5f, 1.0f, 1.0f));
+		model = glm::scale(model, glm::vec3(0.5f, 1.25f, 1.25f));
 		color = glm::vec3(2.0f, 0.5f, 1.0f);
 		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
