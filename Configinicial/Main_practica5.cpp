@@ -302,8 +302,8 @@ int main() {
 		glDrawArrays(GL_TRIANGLES, 0, 36);//E1
 		//-----------------------------------
 		//Dedo3
-		model = translate(modelTempMano, glm::vec3(0.0f, 0.0f, 0.5f));
-		model = rotate(model, glm::radians(dedo3), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::translate(modelTempMano, glm::vec3(0.0f, 0.0f, 0.5f));
+		model = glm::rotate(model, glm::radians(dedo3), glm::vec3(0.0f, 1.0f, 0.0f));
 		modelTemp3 = model = glm::translate(model, glm::vec3(0.5f, 0.0f, 0.0f));
 		model = glm::scale(model, glm::vec3(1.0f, 0.25f, 0.25f));
 		color = glm::vec3(0.0f, 1.0f, 0.0f);
@@ -443,8 +443,8 @@ void Inputs(GLFWwindow* window) {
 		mano -= 0.18f;
 	//Rotación de falanges 1
 	if (glfwGetKey(window, GLFW_KEY_Z) == GLFW_PRESS) {
-		if (dedo1_1 == 0.0f && dedo1_2 == 0.0f) {
-			if (dedo1 < 9) {
+		if (dedo1_1 == 0.0f) {
+			if (dedo1 < 9.0f) {
 				dedo1 += 0.18f;
 				dedo2 += 0.18f;
 				dedo3 += 0.18f;
@@ -452,6 +452,25 @@ void Inputs(GLFWwindow* window) {
 				dedo5 -= 0.18f;
 			}
 		}
+		else if(dedo1_1 > 0){
+			if (dedo1 < 3.0f) {
+				dedo1 += 0.18f;
+				dedo2 += 0.18f;
+				dedo3 += 0.18f;
+				dedo4 -= 0.18f;
+				dedo5 -= 0.18f;
+			}
+		}
+		else if (dedo1_1 < 0) {
+			if (dedo1 < -19.0f) {
+				dedo1 += 0.18f;
+				dedo2 += 0.18f;
+				dedo3 += 0.18f;
+				dedo4 -= 0.18f;
+				dedo5 -= 0.18f;
+			}
+		}
+
 	}
 	if (glfwGetKey(window, GLFW_KEY_X) == GLFW_PRESS) {
 		if (dedo1 > -75.0f) {
@@ -464,33 +483,37 @@ void Inputs(GLFWwindow* window) {
 	}
 	//Rotación de falanges 2
 	if (glfwGetKey(window, GLFW_KEY_C) == GLFW_PRESS) {
-		dedo1_1 += 0.18f;
-		dedo2_1 += 0.18f;
-		dedo3_1 += 0.18f;
-		dedo4_1 -= 0.18f;
-		dedo5_1 -= 0.18f;
+			dedo1_1 += 0.18f;
+			dedo2_1 += 0.18f;
+			dedo3_1 += 0.18f;
+			dedo4_1 -= 0.18f;
+			dedo5_1 -= 0.18f;
 	}
 	if (glfwGetKey(window, GLFW_KEY_V) == GLFW_PRESS) {
-		dedo1_1 -= 0.18f;
-		dedo2_1 -= 0.18f;
-		dedo3_1 -= 0.18f;
-		dedo4_1 += 0.18f;
-		dedo5_1 += 0.18f;
+		if (dedo1_1 > 16) {
+			dedo1_1 -= 0.18f;
+			dedo2_1 -= 0.18f;
+			dedo3_1 -= 0.18f;
+			dedo4_1 += 0.18f;
+			dedo5_1 += 0.18f;
+		}
 	}
 	//Rotación de falanges 3
 	if (glfwGetKey(window, GLFW_KEY_B) == GLFW_PRESS) {
-		dedo1_2 += 0.18f;
-		dedo2_2 += 0.18f;
-		dedo3_2 += 0.18f;
-		dedo4_2 -= 0.18f;
-		dedo5_2 -= 0.18f;
+			dedo1_2 += 0.18f;
+			dedo2_2 += 0.18f;
+			dedo3_2 += 0.18f;
+			dedo4_2 -= 0.18f;
+			dedo5_2 -= 0.18f;
 	}
 	if (glfwGetKey(window, GLFW_KEY_N) == GLFW_PRESS) {
-		dedo1_2 -= 0.18f;
-		dedo2_2 -= 0.18f;
-		dedo3_2 -= 0.18f;
-		dedo4_2 += 0.18f;
-		dedo5_2 += 0.18f;
+		if (dedo1_2 > -26) {
+			dedo1_2 -= 0.18f;
+			dedo2_2 -= 0.18f;
+			dedo3_2 -= 0.18f;
+			dedo4_2 += 0.18f;
+			dedo5_2 += 0.18f;
+		}
 	}
 
 	//Botón para hacer aparecer el valor de rotación
