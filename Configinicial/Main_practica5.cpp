@@ -265,7 +265,7 @@ int main() {
 		glDrawArrays(GL_TRIANGLES, 0, 36);//E
 		//Dedo1_2
 		model = glm::translate(modelTemp, glm::vec3(0.5f, 0.0f, 0.0f));
-		model = glm::rotate(model, glm::radians(dedo1_2), glm::vec3(0.0f, 0.0f, 1.0f));
+		model = glm::rotate(model, glm::radians(dedo1_2), glm::vec3(0.0f, 1.0f, 1.0f));
 		model = translate(model, glm::vec3(0.25f, 0.0f, 0.0f));
 		model = glm::scale(model, glm::vec3(0.5f, 0.25f, 0.25f));
 		color = glm::vec3(0.5f, 0.0f, 0.5f);
@@ -275,7 +275,7 @@ int main() {
 		//-----------------------------------
 		//Dedo2
 		model = glm::translate(modelTempMano, glm::vec3(0.0f, -0.5f, -0.375f));
-		model = glm::rotate(model, glm::radians(dedo2), glm::vec3(0.0f, 0.0f, 1.0f));
+		model = glm::rotate(model, glm::radians(dedo2), glm::vec3(0.0f, -1.0f, 1.0f));
 		modelTemp2 = model = glm::translate(model, glm::vec3(0.5f, 0.0f, 0.0f));
 		model = glm::scale(model, glm::vec3(1.0f, 0.25f, 0.25f));
 		color = glm::vec3(0.5f, 0.5f, 1.0f);
@@ -284,7 +284,7 @@ int main() {
 		glDrawArrays(GL_TRIANGLES, 0, 36);//F
 		//Dedo2_1
 		model = glm::translate(modelTemp2, glm::vec3(0.5f, 0.0f, 0.0f));
-		model = glm::rotate(model, glm::radians(dedo2_1), glm::vec3(0.0f, 0.0f, 1.0f));
+		model = glm::rotate(model, glm::radians(dedo2_1), glm::vec3(0.0f, -1.0f, 1.0f));
 		modelTemp2 = model = glm::translate(model, glm::vec3(0.5f, 0.0f, 0.0f));
 		model = glm::scale(model, glm::vec3(1.0f, 0.25f, 0.25f));
 		color = glm::vec3(0.25f, 0.25f, 0.5f);
@@ -293,7 +293,7 @@ int main() {
 		glDrawArrays(GL_TRIANGLES, 0, 36);//G
 		//Dedo2_2
 		model = glm::translate(modelTemp2, glm::vec3(0.5f, 0.0f, 0.0f));
-		model = glm::rotate(model, glm::radians(dedo2_2), glm::vec3(0.0f, 0.0f, 1.0f));
+		model = glm::rotate(model, glm::radians(dedo2_2), glm::vec3(0.0f, -1.0f, 1.0f));
 		model = translate(model, glm::vec3(0.25f, 0.0f, 0.0f));
 		model = glm::scale(model, glm::vec3(0.5f, 0.25f, 0.25f));
 		color = glm::vec3(0.125f, 0.125f, 0.25f);
@@ -321,7 +321,7 @@ int main() {
 		glDrawArrays(GL_TRIANGLES, 0, 36);//H1
 		//Dedo3_2
 		model = glm::translate(modelTemp3, glm::vec3(0.5f, 0.0f, 0.0f));
-		model = glm::rotate(model, glm::radians(dedo3_2), glm::vec3(0.0f, 0.0f, 1.0f));
+		model = glm::rotate(model, glm::radians(dedo3_2), glm::vec3(0.0f, 1.0f, 0.0f));
 		model = translate(model, glm::vec3(0.25f, 0.0f, 0.0f));
 		model = glm::scale(model, glm::vec3(0.5f, 0.25f, 0.25f));
 		color = glm::vec3(0.0f, 0.5f, 0.0f);
@@ -349,7 +349,7 @@ int main() {
 		glDrawArrays(GL_TRIANGLES, 0, 36);//I1
 		//Dedo4_2
 		model = glm::translate(modelTemp4, glm::vec3(0.5f, 0.0f, 0.0f));
-		model = glm::rotate(model, glm::radians(dedo4_2), glm::vec3(0.0f, 0.0f, 1.0f));
+		model = glm::rotate(model, glm::radians(dedo4_2), glm::vec3(0.0f, 1.0f, 0.0f));
 		model = translate(model, glm::vec3(0.25f, 0.0f, 0.0f));
 		model = glm::scale(model, glm::vec3(0.5f, 0.25f, 0.25f));
 		color = glm::vec3(0.5f, 0.0f, 0.0f);
@@ -441,30 +441,76 @@ void Inputs(GLFWwindow* window) {
 		mano += 0.18f;
 	if (glfwGetKey(window, GLFW_KEY_Y) == GLFW_PRESS)
 		mano -= 0.18f;
-	//Rotación de los dedos
-	if (glfwGetKey(window, GLFW_KEY_J) == GLFW_PRESS) {
+	//Rotación de falanges 1
+	if (glfwGetKey(window, GLFW_KEY_Z) == GLFW_PRESS) {
 		dedo1 += 0.18f;
-		std::cout << "Movimiendo dedo 1: " << dedo1 << std::endl;
-	}
-	if (glfwGetKey(window, GLFW_KEY_U) == GLFW_PRESS) {
-		dedo1 -= 0.18f;
-		std::cout << "Movimiendo dedo 1: " << dedo1 << std::endl;
-	}
-	if (glfwGetKey(window, GLFW_KEY_Z) == GLFW_PRESS)
-		dedo1_1 += 0.18f;
-	if (glfwGetKey(window, GLFW_KEY_X) == GLFW_PRESS)
-		dedo1_1 -= 0.18f;
-	if (glfwGetKey(window, GLFW_KEY_O) == GLFW_PRESS)
-		dedo1_2 += 0.18f;
-	if (glfwGetKey(window, GLFW_KEY_L) == GLFW_PRESS)
-		dedo1_2 -= 0.18f;
-	if (glfwGetKey(window, GLFW_KEY_K) == GLFW_PRESS)
 		dedo2 += 0.18f;
-	if (glfwGetKey(window, GLFW_KEY_I) == GLFW_PRESS)
+		dedo3 += 0.18f;
+		dedo4 -= 0.18f;
+		dedo5 -= 0.18f;
+	}
+	if (glfwGetKey(window, GLFW_KEY_X) == GLFW_PRESS) {
+		dedo1 -= 0.18f;
 		dedo2 -= 0.18f;
-	if (glfwGetKey(window, GLFW_KEY_C) == GLFW_PRESS)
+		dedo3 -= 0.18f;
+		dedo4 += 0.18f;
+		dedo5 += 0.18f;
+	}
+	//Rotación de falanges 2
+	if (glfwGetKey(window, GLFW_KEY_C) == GLFW_PRESS) {
+		dedo1_1 += 0.18f;
 		dedo2_1 += 0.18f;
-	if (glfwGetKey(window, GLFW_KEY_V) == GLFW_PRESS)
+		dedo3_1 += 0.18f;
+		dedo4_1 -= 0.18f;
+		dedo5_1 -= 0.18f;
+	}
+	if (glfwGetKey(window, GLFW_KEY_V) == GLFW_PRESS) {
+		dedo1_1 -= 0.18f;
 		dedo2_1 -= 0.18f;
+		dedo3_1 -= 0.18f;
+		dedo4_1 += 0.18f;
+		dedo5_1 += 0.18f;
+	}
+	//Rotación de falanges 3
+	if (glfwGetKey(window, GLFW_KEY_B) == GLFW_PRESS) {
+		dedo1_2 += 0.18f;
+		dedo2_2 += 0.18f;
+		dedo3_2 += 0.18f;
+		dedo4_2 -= 0.18f;
+		dedo5_2 -= 0.18f;
+	}
+	if (glfwGetKey(window, GLFW_KEY_N) == GLFW_PRESS) {
+		dedo1_2 -= 0.18f;
+		dedo2_2 -= 0.18f;
+		dedo3_2 -= 0.18f;
+		dedo4_2 += 0.18f;
+		dedo5_2 += 0.18f;
+	}
+
+	//Botón para hacer aparecer el valor de rotación
+	if (glfwGetKey(window, GLFW_KEY_I) == GLFW_PRESS) {
+		std::cout << "Dedo1: " << dedo1 << "\n"
+			<< "Dedo2: " << dedo2 << "\n"
+			<< "Dedo3: " << dedo3 << "\n"
+			<< "Dedo4: " << dedo4 << "\n"
+			<< "Dedo5: " << dedo5 << "\n"
+			<< std::endl;
+	}
+	if (glfwGetKey(window, GLFW_KEY_O) == GLFW_PRESS) {
+		std::cout << "Dedo1_1: " << dedo1_1 << "\n"
+			<< "Dedo2_1: " << dedo2_1 << "\n"
+			<< "Dedo3_1: " << dedo3_1 << "\n"
+			<< "Dedo4_1: " << dedo4_1 << "\n"
+			<< "Dedo5_1: " << dedo5_1 << "\n"
+			<< std::endl;
+	}
+	if (glfwGetKey(window, GLFW_KEY_P) == GLFW_PRESS) {
+		std::cout << "Dedo1_2: " << dedo1_2 << "\n"
+			<< "Dedo2_2: " << dedo2_2 << "\n"
+			<< "Dedo3_2: " << dedo3_2 << "\n"
+			<< "Dedo4_2: " << dedo4_2 << "\n"
+			<< "Dedo5_2: " << dedo5_2 << "\n"
+			<< std::endl;
+	}
 
 }
