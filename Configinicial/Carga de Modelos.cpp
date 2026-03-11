@@ -99,7 +99,7 @@ int main( )
     Shader shader( "Shader/modelLoading.vs", "Shader/modelLoading.frag" );
     
     // Load models
-    //Model dog((char*)"Models/RedDog.obj");
+    Model dog((char*)"Models/RedDog.obj");
     Model skull((char*)"Models/12140_Skull_v3_L2.obj");
     glm::mat4 projection = glm::perspective( camera.GetZoom( ), ( float )SCREEN_WIDTH/( float )SCREEN_HEIGHT, 0.1f, 100.0f );
     
@@ -128,18 +128,21 @@ int main( )
         glUniformMatrix4fv(glGetUniformLocation(shader.Program, "view"), 1, GL_FALSE, glm::value_ptr(view));
 
         // Draw the loaded model
-        glm::mat4 model(1);
+        glm::mat4  model(1.0f);
+        glm::mat4  model2(1.0f);
 
-        model = glm::rotate(model, -1.5708f, glm::vec3(1.0f, 0.0f, 0.0f));
-        model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));
+        //Esto era para Skull
+        //model = glm::rotate(model, -1.5708f, glm::vec3(1.0f, 0.0f, 0.0f));
+        model = glm::scale(model, glm::vec3(3.0f, 3.0f, 3.0f));
 
         glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-        skull.Draw(shader);
+        dog.Draw(shader);
 
-        //model = glm::translate(model, glm::vec3(3.0f, 0.0f, 0.0f));
-        //model = glm::scale(model, glm::vec3(2.0f, 2.0f, 2.0f));
-        //glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-        //dog.Draw(shader);
+        model2 = glm::translate(model2, glm::vec3(4.0f, 0.0f, -3.0f));
+        model2 = glm::rotate(model2, -1.5708f, glm::vec3(1.0f, 0.0f, 0.0f));
+        model2 = glm::scale(model2, glm::vec3(0.25f, 0.25f, 0.25f));
+        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model2));
+        skull.Draw(shader);
 
         // Swap the buffers
         glfwSwapBuffers( window );
