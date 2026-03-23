@@ -151,7 +151,7 @@ int main()
 		 0.5f,  0.5f,  0.5f,/**/1.0f, 1.0f, 1.0f,/**/0.50f, 0.67f,
 		-0.5f,  0.5f,  0.5f,/**/1.0f, 1.0f, 1.0f,/**/0.25f, 0.67f,
 		-0.5f,  0.5f, -0.5f,/**/1.0f, 1.0f, 1.0f,/**/0.25f, 0.33f,
-	};
+	}; //Terminado
 
 	// First, set the container's VAO (and VBO)
 	GLuint VBO, VAO /*,EBO*/;
