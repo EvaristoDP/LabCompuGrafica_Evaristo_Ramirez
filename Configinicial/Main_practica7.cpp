@@ -60,7 +60,7 @@ int main()
 	glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 
 	// Create a GLFWwindow object that we can use for GLFW's functions
-	GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Previo 7. Evaristo Ramirez del Prado", nullptr, nullptr);
+	GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Practica 7. Evaristo Ramirez del Prado", nullptr, nullptr);
 
 	if (nullptr == window)
 	{
@@ -101,36 +101,70 @@ int main()
 	Shader lampShader("Shader/lamp.vs", "Shader/lamp.frag");
 
 	// Set up vertex data (and buffer(s)) and attribute pointers
-	GLfloat vertices[] =
+	GLfloat vertices[] = 
 	{
-		// Positions            // Colors              // Texture Coords
-		-0.5f, -0.5f, 0.0f,    1.0f, 1.0f,1.0f,		0.0f,0.0f,
-		0.5f, -0.5f, 0.0f,	   1.0f, 1.0f,1.0f,		1.0f,0.0f,
-		0.5f,  0.5f, 0.0f,     1.0f, 1.0f,1.0f,	    1.0f,1.0f,
-		-0.5f,  0.5f, 0.0f,    1.0f, 1.0f,1.0f,		0.0f,1.0f,
+ 		//Posición		       //Color              //Coordenada UV
+		//Cara:  frontal	
+		-0.5f, -0.5f, 0.5f,/**/1.0f, 1.0f, 1.0f,/**/0.25f, 0.67f,
+		 0.5f, -0.5f, 0.5f,/**/1.0f, 1.0f, 1.0f,/**/0.50f, 0.67f,
+		 0.5f,  0.5f, 0.5f,/**/1.0f, 1.0f, 1.0f,/**/0.50f, 1.00f,
+		 0.5f,  0.5f, 0.5f,/**/1.0f, 1.0f, 1.0f,/**/0.50f, 1.00f, 
+		-0.5f,  0.5f, 0.5f,/**/1.0f, 1.0f, 1.0f,/**/0.25f, 1.00f,
+		-0.5f, -0.5f, 0.5f,/**/1.0f, 1.0f, 1.0f,/**/0.25f, 0.67f,
 
+		//Cara:  Trasera
+		-0.5f, -0.5f,-0.5f,/**/1.0f, 1.0f, 1.0f,/**/0.25f, 0.00f,
+		 0.5f, -0.5f,-0.5f,/**/1.0f, 1.0f, 1.0f,/**/0.50f, 0.00f,
+		 0.5f,  0.5f,-0.5f,/**/1.0f, 1.0f, 1.0f,/**/0.50f, 0.33f,
+		 0.5f,  0.5f,-0.5f,/**/1.0f, 1.0f, 1.0f,/**/0.50f, 0.33f,
+		-0.5f,  0.5f,-0.5f,/**/1.0f, 1.0f, 1.0f,/**/0.25f, 0.33f,
+		-0.5f, -0.5f,-0.5f,/**/1.0f, 1.0f, 1.0f,/**/0.25f, 0.00f,
 
-	};
+		//Cara: Derecha
+		 0.5f, -0.5f,  0.5f,/**/1.0f, 1.0f, 1.0f,/**/1.0f, 0.0f,
+		 0.5f, -0.5f, -0.5f,/**/1.0f, 1.0f, 1.0f,/**/1.0f, 1.0f,
+		 0.5f,  0.5f, -0.5f,/**/1.0f, 1.0f, 1.0f,/**/0.0f, 1.0f,
+		 0.5f,  0.5f, -0.5f,/**/1.0f, 1.0f, 1.0f,/**/0.0f, 1.0f,
+		 0.5f,  0.5f,  0.5f,/**/1.0f, 1.0f, 1.0f,/**/0.0f, 0.0f,
+		 0.5f,  -0.5f, 0.5f,/**/1.0f, 1.0f, 1.0f,/**/1.0f, 0.0f,
 
-	GLuint indices[] =
-	{  // Note that we start from 0!
-		0,1,3,
-		1,2,3
+		 //Cara: Izquierda.
+		-0.5f,  0.5f,  0.5f,/**/1.0f, 1.0f, 1.0f,/**/1.0f, 0.0f, 
+		-0.5f,  0.5f, -0.5f,/**/1.0f, 1.0f, 1.0f,/**/1.0f, 1.0f,
+		-0.5f, -0.5f, -0.5f,/**/1.0f, 1.0f, 1.0f,/**/0.0f, 1.0f,
+		-0.5f, -0.5f, -0.5f,/**/1.0f, 1.0f, 1.0f,/**/0.0f, 1.0f,
+		-0.5f, -0.5f,  0.5f,/**/1.0f, 1.0f, 1.0f,/**/0.0f, 0.0f,
+		-0.5f,  0.5f,  0.5f,/**/1.0f, 1.0f, 1.0f,/**/1.0f, 0.0f,
 
+		//Cara: Inferior.
+		-0.5f, -0.5f, -0.5f,/**/1.0f, 1.0f, 1.0f,/**/0.0f, 1.0f,
+		 0.5f, -0.5f, -0.5f,/**/1.0f, 1.0f, 1.0f,/**/1.0f, 1.0f,
+		 0.5f, -0.5f,  0.5f,/**/1.0f, 1.0f, 1.0f,/**/1.0f, 0.0f,
+		 0.5f, -0.5f,  0.5f,/**/1.0f, 1.0f, 1.0f,/**/1.0f, 0.0f,
+		-0.5f, -0.5f,  0.5f,/**/1.0f, 1.0f, 1.0f,/**/0.0f, 0.0f,
+		-0.5f, -0.5f, -0.5f,/**/1.0f, 1.0f, 1.0f,/**/0.0f, 1.0f,
+
+		//Cara: Superior
+		-0.5f,  0.5f, -0.5f,/**/1.0f, 1.0f, 1.0f,/**/0.0f, 1.0f,
+		 0.5f,  0.5f, -0.5f,/**/1.0f, 1.0f, 1.0f,/**/1.0f, 1.0f,
+		 0.5f,  0.5f,  0.5f,/**/1.0f, 1.0f, 1.0f,/**/1.0f, 0.0f,
+		 0.5f,  0.5f,  0.5f,/**/1.0f, 1.0f, 1.0f,/**/1.0f, 0.0f,
+		-0.5f,  0.5f,  0.5f,/**/1.0f, 1.0f, 1.0f,/**/0.0f, 0.0f,
+		-0.5f,  0.5f, -0.5f,/**/1.0f, 1.0f, 1.0f,/**/0.0f, 1.0f,
 	};
 
 	// First, set the container's VAO (and VBO)
-	GLuint VBO, VAO, EBO;
+	GLuint VBO, VAO /*,EBO*/;
 	glGenVertexArrays(1, &VAO);
 	glGenBuffers(1, &VBO);
-	glGenBuffers(1, &EBO);
+	//glGenBuffers(1, &EBO);
 
 	glBindVertexArray(VAO);
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+	//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+	//glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
 	// Position attribute
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid*)0);
@@ -155,7 +189,7 @@ int main()
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST_MIPMAP_NEAREST);
 	// Diffuse map
-	image = stbi_load("images/checker_Tex.png", &textureWidth, &textureHeight, &nrChannels, 0);
+	image = stbi_load("images/dado.jpg", &textureWidth, &textureHeight, &nrChannels, 0);
 	glBindTexture(GL_TEXTURE_2D, texture1);
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, textureWidth, textureHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
 	glGenerateMipmap(GL_TEXTURE_2D);
@@ -210,7 +244,8 @@ int main()
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		// Draw the light object (using light's vertex attributes)
 		glBindVertexArray(VAO);
-		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+		//glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+		glDrawArrays(GL_TRIANGLES, 0, 36);
 		glBindVertexArray(0);
 
 		// Swap the screen buffers
@@ -219,7 +254,8 @@ int main()
 
 	glDeleteVertexArrays(1, &VAO);
 	glDeleteBuffers(1, &VBO);
-	glDeleteBuffers(1, &EBO);
+	//glDeleteBuffers(1, &EBO);
+	
 	// Terminate GLFW, clearing any resources allocated by GLFW.
 	glfwTerminate();
 
