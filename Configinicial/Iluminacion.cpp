@@ -49,6 +49,12 @@ GLfloat lastFrame = 0.0f;
 float rot = 0.0f;
 bool activanim = false;
 
+//Atributos del sol y la luna
+float orbitRadius = 15.0f;
+float orbitSpeed = 0.5f;
+bool autoOrbit = true;
+float manualTime = 0.0f;
+
 int main()
 {
     // Init GLFW
