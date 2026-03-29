@@ -24,27 +24,41 @@ out vec4 color;
 
 uniform vec3 viewPos;
 uniform Material material;
+
+//Definir las luces.
 uniform Light light;
+uniform Light sol;
+uniform Light luna;
 
 uniform sampler2D texture_diffuse;
 
+//Definir funcion
+vec3 CalcLight(Light light, vec3 normal, vec3 fragPos, vec3 viewDir)
+{
+    //ambient
+    vec3 ambient = light.ambient * material.diffuse;
+    
+    //difusse
+    vec3 lightDir = normalize(light.position - fragPos);
+    float diff = max(dot(normal, lightDir), 0.0);
+    vec3 diffuse light.diffuse * diff * material.diffuse;
+
+    //specular
+    vec3 reflectDir = reflect(-lightDir, normal);
+    floar spec = pow(max(dot(viewDir, reflectDir), 0.0), material.shininess);
+    vec3 specular = light.specular * (spec * material.specular);
+
+    return (ambient + diffuse + specular);
+}
+
 void main()
 {
-    // Ambient
-    vec3 ambient = light.ambient *material.diffuse;
-    
-    // Diffuse
     vec3 norm = normalize(Normal);
-    vec3 lightDir = normalize(light.position - FragPos);
-    float diff = max(dot(norm, lightDir), 0.0);
-    vec3 diffuse = light.diffuse * diff * material.diffuse;
-    
-    // Specular
     vec3 viewDir = normalize(viewPos - FragPos);
-    vec3 reflectDir = reflect(-lightDir, norm);
-    float spec = pow(max(dot(viewDir, reflectDir), 0.0), material.shininess);
-    vec3 specular = light.specular * (spec * material.specular);
-    
-    vec3 result = ambient + diffuse + specular;
-    color = vec4(result, 1.0f)*texture(texture_diffuse, TexCoords);
+
+    vec3 result = CalcLight(sol, norm, FragPos, viewDir);
+
+    result += CalcLight(luna, norm, FragPos, viewDir);
+
+    color = vec4(result, 1.0f) * texture(texture_diffuse, TexCoords);
 }

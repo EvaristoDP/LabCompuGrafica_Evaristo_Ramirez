@@ -1,6 +1,6 @@
-//Previo 8. Materiales e iluminación.
+//Práctica 8. Materiales e iluminación.
 //Alumno: Evaristo Ramírez del Prado Monte Rosa. No. cuenta: 313136120
-//Fecha de entrega: 24 de marzo 2026
+//Fecha de entrega: 29 de marzo 2026
 //------------------------------------------------------------------------
 // Std. Includes
 #include <string>
@@ -61,7 +61,7 @@ int main()
     glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 
     // Create a GLFWwindow object that we can use for GLFW's functions
-    GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Previo 8. Evaristo Ramirez del Prado", nullptr, nullptr);
+    GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Practica 8. Evaristo Ramirez del Prado", nullptr, nullptr);
 
     if (nullptr == window)
     {
@@ -105,8 +105,7 @@ int main()
 
 
     // Load models
-    //Model red_dog((char*)"Models/RedDog.obj");
-    Model skull((char*)"Models/12140_Skull_v3_L2.obj");
+    Model red_dog((char*)"Models/RedDog.obj");
     glm::mat4 projection = glm::perspective(camera.GetZoom(), (float)SCREEN_WIDTH / (float)SCREEN_HEIGHT, 0.1f, 100.0f);
 
     float vertices[] = {
@@ -180,7 +179,7 @@ int main()
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST_MIPMAP_NEAREST);
 
-    image = stbi_load("Models/Skull.jpg", &textureWidth, &textureHeight, &nrChannels, 0);
+    image = stbi_load("Models/Texture_albedo.jpg", &textureWidth, &textureHeight, &nrChannels, 0);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, textureWidth, textureHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
     glGenerateMipmap(GL_TEXTURE_2D);
     if (image)
@@ -240,12 +239,11 @@ int main()
         // Draw the loaded model
         glm::mat4 model(1);
         model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f));
-        model = glm::rotate(model, -1.5708f, glm::vec3(1.0f, 0.0f, 0.0f));
-        model = glm::scale(model, glm::vec3(0.0625f, 0.0625f, 0.0625f));
+        model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
         glUniformMatrix4fv(glGetUniformLocation(lightingShader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
         glBindVertexArray(VAO);
        
-        skull.Draw(lightingShader);
+        red_dog.Draw(lightingShader);
         //glDrawArrays(GL_TRIANGLES, 0, 36);
         
 
