@@ -50,7 +50,7 @@ float rot = 0.0f;
 bool activanim = false;
 
 //Atributos del sol y la luna
-float orbitRadius = 10.0f;
+float orbitRadius = 8.0f;
 float orbitSpeed = 0.5f;
 bool autoOrbit = true;
 float manualTime = 0.0f;
@@ -112,7 +112,7 @@ int main()
 
     // Load models
     Model red_dog((char*)"Models/RedDog.obj");
-    Model casa((char*)"Models/Casa/American_House_00.obj");
+    Model arbol((char*)"Models/Tree.obj");
     glm::mat4 projection = glm::perspective(camera.GetZoom(), (float)SCREEN_WIDTH / (float)SCREEN_HEIGHT, 0.1f, 100.0f);
 
     float vertices[] = {
@@ -253,18 +253,17 @@ int main()
 
         // Carga de modelos del ESCENARIO
         glm::mat4 model(1);
-        model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f));
-        model = glm::scale(model, glm::vec3(10.0f));
+        model = glm::translate(model, glm::vec3(4.0f, -3.0f, 0.0f));
+        model = glm::scale(model, glm::vec3(5.0f));
         glUniformMatrix4fv(glGetUniformLocation(lightingShader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
         glBindVertexArray(VAO);
-       
         red_dog.Draw(lightingShader);
         //glDrawArrays(GL_TRIANGLES, 0, 36);
         glm::mat4 model2(1.0f);
-        model2 = glm::translate(model2, glm::vec3(0.0f, 0.0f, 0.0f));
-        model = glm::scale(model2, glm::vec3(1.0f));
+        model2 = glm::translate(model2, glm::vec3(0.0f, -5.0f, 0.0f));
+        model = glm::scale(model2, glm::vec3(5.0f));
         glUniformMatrix4fv(glGetUniformLocation(lightingShader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model2));
-        casa.Draw(lightingShader);
+        arbol.Draw(lightingShader);
 
 
         glBindVertexArray(0);
@@ -278,7 +277,7 @@ int main()
             //mODELO DEL SOL
         glm::mat4 modelSol = glm::mat4(1.0f);
         modelSol = glm::translate(modelSol, solPos);
-        modelSol = glm::scale(modelSol, glm::vec3(0.5f));
+        modelSol = glm::scale(modelSol, glm::vec3(0.8f));
         glUniformMatrix4fv(glGetUniformLocation(lampshader.Program, "model"), 1, GL_FALSE, glm::value_ptr(modelSol));
         glDrawArrays(GL_TRIANGLES, 0, 36);
             //MODELO DE LA LUNA
