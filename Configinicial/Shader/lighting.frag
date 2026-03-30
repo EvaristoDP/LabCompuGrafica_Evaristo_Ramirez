@@ -26,7 +26,6 @@ uniform vec3 viewPos;
 uniform Material material;
 
 //Definir las luces.
-uniform Light light;
 uniform Light sol;
 uniform Light luna;
 

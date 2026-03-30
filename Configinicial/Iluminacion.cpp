@@ -212,37 +212,45 @@ int main()
         glfwPollEvents();
         DoMovement();
 
-        // Clear the colorbuffer
-        glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+       //Primero calculamos la órbita de sol y la luna
+        float timeValue = autoOrbit ? currentFrame * orbitSpeed : manualTime;
+
+        glm::vec3 solPos(cos(timeValue)* orbitRadius, sin(timeValue)* orbitRadius, 2.0f);
+        glm::vec3 lunaPos(-cos(timeValue) * orbitRadius, -sin(timeValue)* orbitRadius, 2.0f);
+
+        float solIntensity = std::max(0.0f, solPos.y / orbitRadius);
+
+        glClearColor(0.1f * solIntensity, 0.3f * solIntensity, 0.6f * solIntensity + 0.05f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        
+       
+        //Configuración del shader de iluminación
         lightingShader.Use();
-        GLint lightPosLoc = glGetUniformLocation(lightingShader.Program, "light.position");
-        GLint viewPosLoc = glGetUniformLocation(lightingShader.Program, "viewPos");
-        glUniform3f(lightPosLoc, lightPos.x + movelightPos, lightPos.y + movelightPos, lightPos.z + movelightPos);
-        glUniform3f(viewPosLoc, camera.GetPosition().x, camera.GetPosition().y, camera.GetPosition().z);
-
-
-        // Set lights properties
-        glUniform3f(glGetUniformLocation(lightingShader.Program, "light.ambient"), 0.3f, 0.3f, 0.3f);
-        glUniform3f(glGetUniformLocation(lightingShader.Program, "light.diffuse"), 0.3f, 0.3f, 0.3f);
-        glUniform3f(glGetUniformLocation(lightingShader.Program, "light.specular"), 0.0f, 0.0f, 0.0f);
-
-
+            //Matrices de vista y proyección
+        glm::mat4 projection = glm::perspective(camera.GetZoom(), (float)SCREEN_WIDTH / (float)SCREEN_HEIGHT, 0.1f, 100.f);
         glm::mat4 view = camera.GetViewMatrix();
         glUniformMatrix4fv(glGetUniformLocation(lightingShader.Program, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
         glUniformMatrix4fv(glGetUniformLocation(lightingShader.Program, "view"), 1, GL_FALSE, glm::value_ptr(view));
-
-        // Set material properties
+        glUniform3f(glGetUniformLocation(lightingShader.Program, "viewPos"), camera.GetPosition().x, camera.GetPosition().y, camera.GetPosition().z);
+            // Propiedades del material objeto
         glUniform3f(glGetUniformLocation(lightingShader.Program, "material.ambient"), 0.5f, 0.5f, 0.5f);
         glUniform3f(glGetUniformLocation(lightingShader.Program, "material.diffuse"), 0.8f, 0.8f, 0.0f);
         glUniform3f(glGetUniformLocation(lightingShader.Program, "material.specular"), 1.0f, 1.0f, 1.0f);
         glUniform1f(glGetUniformLocation(lightingShader.Program, "material.shininess"), 0.8f);
 
+        //Configuración de las fuentes de luz
+            //SOL
+        glUniform3f(glGetUniformLocation(lightingShader.Program, "sol.position"), solPos.x, solPos.y, solPos.z);
+        glUniform3f(glGetUniformLocation(lightingShader.Program, "sol.ambient"), 0.0f, 0.0f, 0.0f);
+        glUniform3f(glGetUniformLocation(lightingShader.Program, "sol.diffuse"), 0.0f, 0.0f, 0.0f);
+        glUniform3f(glGetUniformLocation(lightingShader.Program, "sol.specular"), 0.0f, 0.0f, 0.0f);
+            //LUNA
+        glUniform3f(glGetUniformLocation(lightingShader.Program, "luna.position"), lunaPos.x, lunaPos.y, lunaPos.z);
+        glUniform3f(glGetUniformLocation(lightingShader.Program, "luna.ambient"), 0.0f, 0.0f, 0.0f);
+        glUniform3f(glGetUniformLocation(lightingShader.Program, "luna.diffuse"), 0.0f, 0.0f, 0.0f);
+        glUniform3f(glGetUniformLocation(lightingShader.Program, "luna.specular"), 0.0f, 0.0f, 0.0f);
 
-
-        // Draw the loaded model
+        // Carga de modelos del ESCENARIO
         glm::mat4 model(1);
         model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f));
         model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
@@ -251,22 +259,27 @@ int main()
        
         red_dog.Draw(lightingShader);
         //glDrawArrays(GL_TRIANGLES, 0, 36);
-        
-
         glBindVertexArray(0);
 
 
-
-
+        //Dibujo del modelo del sol y la luna 
         lampshader.Use();
         glUniformMatrix4fv(glGetUniformLocation(lampshader.Program, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
         glUniformMatrix4fv(glGetUniformLocation(lampshader.Program, "view"), 1, GL_FALSE, glm::value_ptr(view));
-        model = glm::mat4(1.0f);
-        model = glm::translate(model, lightPos + movelightPos);
-        model = glm::scale(model, glm::vec3(0.3f));
-        glUniformMatrix4fv(glGetUniformLocation(lampshader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
         glBindVertexArray(VAO);
+            //mODELO DEL SOL
+        glm::mat4 modelSol = glm::mat4(1.0f);
+        modelSol = glm::translate(modelSol, solPos);
+        modelSol = glm::scale(modelSol, glm::vec3(0.5f));
+        glUniformMatrix4fv(glGetUniformLocation(lampshader.Program, "model"), 1, GL_FALSE, glm::value_ptr(modelSol));
         glDrawArrays(GL_TRIANGLES, 0, 36);
+            //MODELO DE LA LUNA
+        glm::mat4 modelLuna = glm::mat4(1.0f);
+        modelLuna = glm::translate(modelLuna, lunaPos);
+        modelLuna = glm::scale(modelLuna, glm::vec3(0.3f));
+        glUniformMatrix4fv(glGetUniformLocation(lampshader.Program, "model"), 1, GL_FALSE, glm::value_ptr(modelLuna));
+        glDrawArrays(GL_TRIANGLES, 0, 36);
+
         glBindVertexArray(0);
 
         // Swap the buffers
@@ -345,7 +358,24 @@ void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mode
         movelightPos -= 0.1f;
     }
 
+    //Intercambio día y noche
+    if (keys[GLFW_KEY_T] && action == GLFW_PRESS)
+    {
+        autoOrbit = !autoOrbit;
+        if (!autoOrbit)
+            manualTime = glfwGetTime() * orbitSpeed;
+    }
 
+    if (keys[GLFW_KEY_M])
+    {
+        autoOrbit = false;
+        manualTime = 1.5708f;
+    }
+    if (keys[GLFW_KEY_N])
+    {
+        autoOrbit = false;
+        manualTime = 4.7123f;
+    }
 }
 
 void MouseCallback(GLFWwindow* window, double xPos, double yPos)
