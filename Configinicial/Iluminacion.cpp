@@ -241,19 +241,19 @@ int main()
         //Configuración de las fuentes de luz
             //SOL
         glUniform3f(glGetUniformLocation(lightingShader.Program, "sol.position"), solPos.x, solPos.y, solPos.z);
-        glUniform3f(glGetUniformLocation(lightingShader.Program, "sol.ambient"), 0.0f, 0.0f, 0.0f);
-        glUniform3f(glGetUniformLocation(lightingShader.Program, "sol.diffuse"), 0.0f, 0.0f, 0.0f);
-        glUniform3f(glGetUniformLocation(lightingShader.Program, "sol.specular"), 0.0f, 0.0f, 0.0f);
+        glUniform3f(glGetUniformLocation(lightingShader.Program, "sol.ambient"), 0.1f, 0.1f, 0.1f);
+        glUniform3f(glGetUniformLocation(lightingShader.Program, "sol.diffuse"), 0.8f, 0.7f, 0.5f);
+        glUniform3f(glGetUniformLocation(lightingShader.Program, "sol.specular"), 1.0f, 1.0f, 1.0f);
             //LUNA
         glUniform3f(glGetUniformLocation(lightingShader.Program, "luna.position"), lunaPos.x, lunaPos.y, lunaPos.z);
-        glUniform3f(glGetUniformLocation(lightingShader.Program, "luna.ambient"), 0.0f, 0.0f, 0.0f);
-        glUniform3f(glGetUniformLocation(lightingShader.Program, "luna.diffuse"), 0.0f, 0.0f, 0.0f);
-        glUniform3f(glGetUniformLocation(lightingShader.Program, "luna.specular"), 0.0f, 0.0f, 0.0f);
+        glUniform3f(glGetUniformLocation(lightingShader.Program, "luna.ambient"), 0.02f, 0.02f, 0.05f);
+        glUniform3f(glGetUniformLocation(lightingShader.Program, "luna.diffuse"), 0.2f, 0.3f, 0.6f);
+        glUniform3f(glGetUniformLocation(lightingShader.Program, "luna.specular"), 0.5f, 0.5f, 0.5f);
 
         // Carga de modelos del ESCENARIO
         glm::mat4 model(1);
         model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f));
-        model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+        model = glm::scale(model, glm::vec3(10.0f));
         glUniformMatrix4fv(glGetUniformLocation(lightingShader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
         glBindVertexArray(VAO);
        
@@ -365,12 +365,13 @@ void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mode
         if (!autoOrbit)
             manualTime = glfwGetTime() * orbitSpeed;
     }
-
+    //ModoDía
     if (keys[GLFW_KEY_M])
     {
         autoOrbit = false;
         manualTime = 1.5708f;
     }
+    //Modo noche
     if (keys[GLFW_KEY_N])
     {
         autoOrbit = false;

@@ -40,11 +40,11 @@ vec3 CalcLight(Light light, vec3 normal, vec3 fragPos, vec3 viewDir)
     //difusse
     vec3 lightDir = normalize(light.position - fragPos);
     float diff = max(dot(normal, lightDir), 0.0);
-    vec3 diffuse light.diffuse * diff * material.diffuse;
+    vec3 diffuse = light.diffuse * diff * material.diffuse;
 
     //specular
     vec3 reflectDir = reflect(-lightDir, normal);
-    floar spec = pow(max(dot(viewDir, reflectDir), 0.0), material.shininess);
+    float spec = pow(max(dot(viewDir, reflectDir), 0.0), material.shininess);
     vec3 specular = light.specular * (spec * material.specular);
 
     return (ambient + diffuse + specular);
