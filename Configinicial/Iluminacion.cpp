@@ -112,7 +112,7 @@ int main()
 
     // Load models
     Model red_dog((char*)"Models/RedDog.obj");
-    Model camp((char*)"Models/model.obj");
+    Model casa((char*)"Models/Casa/American_House_00.obj");
     glm::mat4 projection = glm::perspective(camera.GetZoom(), (float)SCREEN_WIDTH / (float)SCREEN_HEIGHT, 0.1f, 100.0f);
 
     float vertices[] = {
@@ -264,7 +264,7 @@ int main()
         model2 = glm::translate(model2, glm::vec3(0.0f, 0.0f, 0.0f));
         model = glm::scale(model2, glm::vec3(1.0f));
         glUniformMatrix4fv(glGetUniformLocation(lightingShader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model2));
-        camp.Draw(lightingShader);
+        casa.Draw(lightingShader);
 
 
         glBindVertexArray(0);
