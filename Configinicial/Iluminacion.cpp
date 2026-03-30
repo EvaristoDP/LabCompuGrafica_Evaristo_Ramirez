@@ -50,7 +50,7 @@ float rot = 0.0f;
 bool activanim = false;
 
 //Atributos del sol y la luna
-float orbitRadius = 15.0f;
+float orbitRadius = 10.0f;
 float orbitSpeed = 0.5f;
 bool autoOrbit = true;
 float manualTime = 0.0f;
@@ -112,6 +112,7 @@ int main()
 
     // Load models
     Model red_dog((char*)"Models/RedDog.obj");
+    Model camp((char*)"Models/model.obj");
     glm::mat4 projection = glm::perspective(camera.GetZoom(), (float)SCREEN_WIDTH / (float)SCREEN_HEIGHT, 0.1f, 100.0f);
 
     float vertices[] = {
@@ -259,6 +260,13 @@ int main()
        
         red_dog.Draw(lightingShader);
         //glDrawArrays(GL_TRIANGLES, 0, 36);
+        glm::mat4 model2(1.0f);
+        model2 = glm::translate(model2, glm::vec3(0.0f, 0.0f, 0.0f));
+        model = glm::scale(model2, glm::vec3(1.0f));
+        glUniformMatrix4fv(glGetUniformLocation(lightingShader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model2));
+        camp.Draw(lightingShader);
+
+
         glBindVertexArray(0);
 
 
